@@ -69,10 +69,12 @@ public struct PanelSlider<Content>: ParallaxProvider where Content: View {
         }
       }
       .drag(onChanged: { value in
+        guard isEnabled else { return }
         self.value = min(max(0, value.location.x / geometry.size.width), 1)
         @NaturalResistance var diff = value.translation
         onChanged?(diff)
       }, onEnded: { value in
+        guard isEnabled else { return }
         onChanged?(.zero)
       })
     }

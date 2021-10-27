@@ -51,10 +51,12 @@ public struct PanelSegmentedControl: ParallaxProvider {
           : .gray)
       )
       .drag(onChanged: { value in
+        guard isEnabled else { return }
         self.selection = index
         @NaturalResistance var diff = value.translation
         onChanged?(diff)
       }, onEnded: { value in
+        guard isEnabled else { return }
         onChanged?(.zero)
       })
       .animation(.spring(), value: selection == index)
@@ -86,11 +88,3 @@ extension TupleView {
     return tupleMirror.children.compactMap(convert)
   }
 }
-
-//struct PanelSegmentedControl_Previews: PreviewProvider {
-//  static var previews: some View {
-//    PanelSegmentedControl(selection: <#T##Binding<Int>#>) { 
-//      <#code#>
-//    }
-//  }
-//}

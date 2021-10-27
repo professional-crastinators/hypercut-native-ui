@@ -11,6 +11,8 @@ import FocusUI
 
 public struct HoverControl<Label, Control>: View where Label: View, Control: ParallaxProvider {
   
+  @Environment(\.isEnabled) var isEnabled
+  
   var label: Label
   var control: Control
   
@@ -39,9 +41,12 @@ public struct HoverControl<Label, Control>: View where Label: View, Control: Par
   
   public var content: some View {
     VStack(alignment: .leading) {
-      label
-      control
-      .parallaxProviding { parallax in
+      if isEnabled {
+        label
+      } else {
+        label.foregroundColor(.gray)
+      }
+      control.parallaxProviding { parallax in
         self.parallax = parallax
       }
     }

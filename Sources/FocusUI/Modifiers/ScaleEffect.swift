@@ -9,6 +9,8 @@ import SwiftUI
 
 public struct ScaleEffect: ViewModifier {
   
+  @Environment(\.isEnabled) var isEnabled
+  
   var isHovered: Bool
   var scale: CGFloat
   
@@ -19,6 +21,6 @@ public struct ScaleEffect: ViewModifier {
   
   public func body(content: Content) -> some View {
     return content
-      .scaleEffect(isHovered ? scale : 1)
+      .scaleEffect(isHovered && isEnabled ? scale : 1)
   }
 }
