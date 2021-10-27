@@ -9,7 +9,7 @@ import SwiftUI
 
 public struct ProgressPanelButtonStyle: ButtonStyle {
   
-  public init(_ accentColor: Color, progress: CGFloat) {
+  public init(_ accentColor: Color, progress: CGFloat?) {
     self.accentColor = accentColor
     self.progress = progress
   }
