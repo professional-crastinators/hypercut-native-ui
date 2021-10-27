@@ -9,6 +9,8 @@ import SwiftUI
 
 public struct LoadingIndicator: View {
   
+  public init() { }
+  
   @State private var animatableParameter: Double = 0
   
   public var body: some View {
